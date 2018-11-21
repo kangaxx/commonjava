@@ -1,4 +1,4 @@
-package common_java;
+package org.apache.aichina.common.java;
 
 import java.lang.Thread;
 import java.io.File;
@@ -11,7 +11,7 @@ import java.nio.channels.FileChannel.MapMode;
 import java.nio.channels.FileLock;
 import sun.nio.ch.FileChannelImpl;
 
-import common_java.*;
+import org.apache.aichina.common.java.*;
 
 public class common_sharemem{
   private static common_sharemem _instance = new common_sharemem();
