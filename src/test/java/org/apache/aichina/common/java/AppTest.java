@@ -26,4 +26,17 @@ public class AppTest
       else
         assertTrue(false);
     }
+
+    @Test
+    public void bitFileReadWriteTest()
+    {
+      common_bit_file f = new common_bit_file("/root/test.tmp", "rw");
+      byte [] tmp = new byte[8];
+      for (int i = 0; i < tmp.length; ++i){
+        tmp[i] = (byte)i;
+
+      }
+      f.write(tmp, 0, tmp.length);
+      f.close();
+    }
 }

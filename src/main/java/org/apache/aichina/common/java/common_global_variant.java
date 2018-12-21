@@ -25,4 +25,7 @@ public class common_global_variant{
   public static String GLOB_STRING_AUTO_TIME_OUT = "session.timeout.ms";
   public static String GLOB_STRING_KEY_DESERIALIZER = "key.deserializer";
   public static String GLOB_STRING_VALUE_DESERIALIZER = "value.deserializer";
+  public static String GLOB_STRING_DATABASE_INFOFILE_SUFFIX = ".inf";
+  public static String GLOB_STRING_DATABASE_DATAFILE_SUFFIX = ".data";
+  public static String GLOB_STRING_DATABASE_INDEXFILE_SUFFIX = ".idx";
 }
