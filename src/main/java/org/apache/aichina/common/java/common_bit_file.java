@@ -36,7 +36,7 @@ public class common_bit_file
 
   public void read(byte[] words, int offset, int size){
     try{
-      if (_file == null)
+      if (null == _file)
         throw new Exception("ERR: read bit file error ,file not initial!");
  
       _file.read(words, offset, size);
@@ -46,7 +46,7 @@ public class common_bit_file
   
   public void write(byte[] words, int offset, int size){
     try{ 
-      if (_file == null)
+      if (null == _file)
         throw new Exception("ERR: write bit file error ,file not initial!");
 
       _file.write(words, offset, size);
@@ -56,11 +56,22 @@ public class common_bit_file
 
   public void close(){
     try{
-      if (_file == null)
+      if (null == _file)
         throw new Exception("ERR: close bit file error, file not initial!");
       _file.close();
     }catch (Exception e){
     }
   }
 
+  public long length(){
+    try{
+      if (null == _file)
+        return 0;
+      else
+        return _file.length();
+    } catch(Exception e) {
+      e.printStackTrace();
+    } 
+    return 0;
+  }
 }

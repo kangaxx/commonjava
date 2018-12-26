@@ -28,4 +28,5 @@ public class common_global_variant{
   public static String GLOB_STRING_DATABASE_INFOFILE_SUFFIX = ".inf";
   public static String GLOB_STRING_DATABASE_DATAFILE_SUFFIX = ".data";
   public static String GLOB_STRING_DATABASE_INDEXFILE_SUFFIX = ".idx";
+  public static int GLOB_INT_PROTOBUF_CACHE_SIZE = 5 * 1024;
 }
