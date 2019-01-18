@@ -39,4 +39,12 @@ public class AppTest
       f.write(tmp, 0, tmp.length);
       f.close();
     }
+
+    @Test
+    public void timeWork()
+    {
+      common_java_timer jt = new common_java_timer();
+      jt.setEnd();
+      assertTrue( jt.duration() > 0);
+    }
 }
