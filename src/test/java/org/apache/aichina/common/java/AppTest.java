@@ -45,6 +45,14 @@ public class AppTest
     {
       common_java_timer jt = new common_java_timer();
       jt.setEnd();
-      assertTrue( jt.duration() > 0);
+      System.out.println("duration " + jt.duration());
+      System.out.println("duration_1 " + jt.duration(1));
+      System.out.println("duration_2 " + jt.duration(2));
+      System.out.println("duration_3 " + jt.duration(3));
+      System.out.println("begin " + jt.getBegin());
+      System.out.println("end " + jt.getEnd());
+      System.out.println("begin date : " + jt.getBeginDate());
+      System.out.println("end date : " + jt.getEndDate());
+      assertTrue( jt.duration() >= 0);
     }
 }
