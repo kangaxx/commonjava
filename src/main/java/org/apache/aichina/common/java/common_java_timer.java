@@ -10,14 +10,14 @@ public class common_java_timer{
     _begin = _init;
   }
 
-  public void setBegin(long now = 0){
-    if (now <= 0){
+  public void setBegin(long now = 0.0){
+    if (now <= 0.0){
       _begin = System.currentTimeMillis();
     }
   }
 
-  public void setEnd(long now = 0){
-    if (now <= 0){
+  public void setEnd(long now = 0.0){
+    if (now <= 0.0){
       _end = System.currentTimeMillis();
     }
   }
