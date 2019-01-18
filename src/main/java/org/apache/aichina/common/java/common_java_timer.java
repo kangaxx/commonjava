@@ -10,7 +10,7 @@ public class common_java_timer{
     _begin = _init;
   }
 
-  public void setBegin(long now = -1){
+  public void setBegin(long now = 0){
     if (now <= 0){
       _begin = System.currentTimeMillis();
     }
