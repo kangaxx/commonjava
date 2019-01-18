@@ -29,4 +29,7 @@ public class common_global_variant{
   public static String GLOB_STRING_DATABASE_DATAFILE_SUFFIX = ".data";
   public static String GLOB_STRING_DATABASE_INDEXFILE_SUFFIX = ".idx";
   public static int GLOB_INT_PROTOBUF_CACHE_SIZE = 5 * 1024;
+  public static int GLOB_INT_TIMER_TYPE_MILLION = 1;
+  public static int GLOB_INT_TIMER_TYPE_SECOND = 2;
+  public static int GLOB_INT_TIMER_TYPE_MINS = 3;
 }
