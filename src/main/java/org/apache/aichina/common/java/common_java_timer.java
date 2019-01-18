@@ -22,8 +22,9 @@ public class common_java_timer{
     }
   }
 
-  public long duration(long now = 0, int result_type){
+  public long duration(int result_type = GLOB_INT_TIMER_TYPE_MILLION){
     long result;
+
     result = _end - _begin;
     switch(result_type){
       case GLOB_INT_TIMER_TYPE_MILLION:
