@@ -16,14 +16,23 @@ public class common_java_timer{
     }
   }
 
-  public void setEnd(long now = -1){
+  public void setEnd(long now = 0){
     if (now <= 0){
       _end = System.currentTimeMillis();
     }
   }
 
-  public long getTime(long now = -1, int result_type){
-    
+  public long duration(long now = 0, int result_type){
+    long result;
+    result = _end - _begin;
+    switch(result_type){
+      case GLOB_INT_TIMER_TYPE_MILLION:
+        return result;break;
+      case GLOB_INT_TIMER_TYPE_SECOND:
+        return result/1000.0; break;
+      case GLOB_INT_TIMER_TYPE_MINS:
+        return result/60000.0; break;
+    }
   }
 
 
