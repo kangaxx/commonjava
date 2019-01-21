@@ -1,8 +1,11 @@
+package org.apache.aichina.common.java;
+
+
 import java.util.*;
+import org.apache.aichina.common.java.*;
 public class common_java_logger{
   private static common_java_logger _instance = new common_java_logger();
   private static String _fileName;
-  private static bool _initialed = false;
   private common_java_logger(){
     try{
     } catch(Exception e){
@@ -29,10 +32,13 @@ public class common_java_logger{
   public static void initial(){
     try {
       common_bit_file bf = new common_bit_file(_fileName, "rw");
-      _initialed = true;
     } catch (Exception e) {
-      _initialed = false;
       e.printStackTrace();
     }
+  }
+
+  public static void insert(String word){
+    //我要仔细想想，手动管理offset是有问题的
+
   }
 }
