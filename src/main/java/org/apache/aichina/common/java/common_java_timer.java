@@ -72,4 +72,9 @@ public class common_java_timer{
   public String getEndDate(){
     return formatter.format(new Date(_end));
   }
+
+  public static String now(){
+    SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    return fmt.format(new Date(System.currentTimeMillis()));
+  }
 }

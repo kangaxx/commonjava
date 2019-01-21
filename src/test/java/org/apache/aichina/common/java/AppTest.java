@@ -37,7 +37,18 @@ public class AppTest
 
       }
       f.write(tmp, 0, tmp.length);
+      String s = "wa ka wa ka";
+      s += "\n";
+      f.append(s);
+      f.append(s);
       f.close();
+    }
+
+    @Test
+    public void loggerTest()
+    {
+      common_java_logger log = common_java_logger.getInstance("/root/common_log_test.tmp"); 
+      log.info(common_java_timer.now() + ": run maven install test! \n");
     }
 
     @Test
@@ -54,5 +65,7 @@ public class AppTest
       System.out.println("begin date : " + jt.getBeginDate());
       System.out.println("end date : " + jt.getEndDate());
       assertTrue( jt.duration() >= 0);
+      assertTrue(1000000 % 1000 == 0);
+      assertTrue(0 % 1000 == 0);
     }
 }

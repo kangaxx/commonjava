@@ -63,6 +63,28 @@ public class common_bit_file
     }
   }
 
+  public  void append(byte[] words, int size){
+    try{
+      if (null == _file)
+        throw new Exception("ERR: append bit file error, file not initial!");
+      
+      _file.write(words, (int)length(), size);
+    } catch (Exception e){
+      e.printStackTrace();
+    }
+  }
+
+  public void append(String words){
+    try {
+      if (null == _file)
+        throw new Exception("ERR: append bit file error, file not initial!");
+      _file.seek(length());
+      _file.writeBytes(words);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
   public long length(){
     try{
       if (null == _file)
