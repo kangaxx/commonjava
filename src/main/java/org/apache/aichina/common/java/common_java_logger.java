@@ -42,6 +42,7 @@ public class common_java_logger{
   public static void append(String word){
     //我要仔细想想，手动管理offset是有问题的
     _bf.append(word);
+    _bf.append("\n");
   }
  
   public static void info(String word){
