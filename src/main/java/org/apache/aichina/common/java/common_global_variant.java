@@ -2,6 +2,7 @@ package org.apache.aichina.common.java;
 public class common_global_variant{
   public static String GLOB_STRING_MEMSHARE_ELEMENT = "share_memory";
   public static String GLOB_STRING_KAFKA_PROPERTY = "kafka_property";
+  public static String GLOB_STRING_MEMSHARE_CONFIGFILE = "sharemem_config.xml";
   public static String GLOB_STRING_MEMSHARE_ATTRIBUTE_BLOCKCOUNT = "block_count";
   public static String GLOB_STRING_MEMSHARE_FILE_PREFIX_ATTRIBUTE = "file_prefix";
   public static String GLOB_STRING_MEMSHARE_LOG_FILE_PATH="log_file_prefix";
@@ -32,4 +33,7 @@ public class common_global_variant{
   public static final int GLOB_INT_TIMER_TYPE_MILLION = 1;
   public static final int GLOB_INT_TIMER_TYPE_SECOND = 2;
   public static final int GLOB_INT_TIMER_TYPE_MINS = 3;
+  public static final String GLOB_STRING_VDC_MEMSHARE_DEFAULT_LINUX_DATAFILE="/var/lib/virtual-data-gene/_vdc_datafile_";
+  public static final String GLOB_STRING_VDC_MEMSHARE_DEFAULT_LINUX_CONFIGFILE="/var/lib/virtual-data-gene/vdc.conf";
+  public static final int GLOB_INT_MEMSHARE_INT_CREATEMEM_RETRY_MAX=30;
 }

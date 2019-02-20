@@ -59,6 +59,7 @@ public class common_sharemem{
 
   public static int blockCount(){
     try{
+      System.out.println(_instance.configFile);
       return common_java.StrToInt_safe(common_java.getAttributeByElem(_instance.configFile, common_global_variant.GLOB_STRING_MEMSHARE_ELEMENT,
                                        common_global_variant.GLOB_STRING_MEMSHARE_ATTRIBUTE_BLOCKCOUNT), 0);
     }catch(Exception e){
@@ -80,11 +81,10 @@ public class common_sharemem{
 
   public static FileLock getFileLock(int index){
     try{
-      int block_num = common_java.StrToInt_safe(common_java.getAttributeByElem(_instance.configFile, common_global_variant.GLOB_STRING_MEMSHARE_ELEMENT,
-                                                        common_global_variant.GLOB_STRING_MEMSHARE_ATTRIBUTE_BLOCKCOUNT), 0);
+      int block_num =  blockCount(); 
       String prefix = common_java.getAttributeByElem(_instance.configFile, common_global_variant.GLOB_STRING_MEMSHARE_ELEMENT, 
                                                       common_global_variant.GLOB_STRING_MEMSHARE_FILE_PREFIX_ATTRIBUTE);
-
+      
 
       if (lockFiles == null){
         lockFiles = new RandomAccessFile[block_num];
@@ -108,16 +108,15 @@ public class common_sharemem{
   public MappedByteBuffer[] createWriteSharemem(){
     MappedByteBuffer [] result = null;
     try {
-      int block_num = 0;
       //1. load share mem config
-      block_num = common_java.StrToInt_safe(common_java.getAttributeByElem(_instance.configFile, common_global_variant.GLOB_STRING_MEMSHARE_ELEMENT,
-                                                        common_global_variant.GLOB_STRING_MEMSHARE_ATTRIBUTE_BLOCKCOUNT), 0);
+      int block_num = blockCount();
       //2. create share mem
       
       if (block_num > 0 && block_num < common_global_variant.GLOB_INT_MEMSHARE_BLOCKCOUNT_MAX){
         result = new MappedByteBuffer[block_num];
       }
       else{
+        System.out.print(String.format("Initial failed : blocknum [%d] is error, must bigger than 0 and less than [%d]!", block_num, common_global_variant.GLOB_INT_MEMSHARE_BLOCKCOUNT_MAX));
         abortInitial();
         return null;
       }

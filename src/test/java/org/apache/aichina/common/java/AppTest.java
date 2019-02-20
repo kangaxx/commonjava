@@ -25,6 +25,15 @@ public class AppTest
         assertTrue( true );
       else
         assertTrue(false);
+      if (common_java.combineFilePathEx("/abc/", "def").equals("/abc/def"))
+        assertTrue( true );
+      else
+        assertTrue(false);
+      if (common_java.combineFilePathEx("/abc", "/def").equals("/abc/def"))
+        assertTrue( true );
+      else
+        assertTrue(false);
+
     }
 
     @Test
@@ -42,6 +51,18 @@ public class AppTest
       f.append(s);
       f.append(s);
       f.close();
+    }
+
+    @Test 
+    public void TypeConvertTest()
+    {
+      String normal_str = "123";
+      assertTrue( common_java.StrToInt_safe(normal_str) == 123);
+      assertTrue( common_java.StrToInt(normal_str) == 123);
+      int normal_int = 123;
+      assertTrue( common_java.IntToStr(normal_int).equals("123"));
+      assertTrue( normal_str.equals(common_java.CharToStr(common_java.StrToChar(normal_str))));
+      assertTrue( normal_str.equals(common_java.ByteToStr(common_java.StrToByte(normal_str))));
     }
 
     @Test

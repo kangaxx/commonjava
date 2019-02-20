@@ -119,7 +119,7 @@ public class common_xml
     return result;
   }
 
-  public static Document createDocument() throw ParserConfigurationException {
+  public static Document createDocument() throws ParserConfigurationException {
     // 定义工厂 API，使应用程序能够从 XML 文档获取生成 DOM 对象树的解析器
     DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
     // 定义 API， 使其从 XML 文档获取 DOM 文档实例。使用此类，应用程序员可以从 XML 获取一个 Document
@@ -137,17 +137,21 @@ public class common_xml
   public static Element docCreateElement(Document document, String elementName) {
     return document.createElement(elementName);
   }
-                           
+
+  public static Element addElement(Document document, Element parent, String elementName){
+    Element child = document.createElement(elementName);
+    parent.appendChild(child);
+    return child;
+  }
+
   public static void parentAddChild(Document document, Element parentElement,
                                     Element childName) {
     parentElement.appendChild(childName);
   }
 
-  public static void addAttrtoElement(Document document, Element elem, String attrName, String attrValue) 
+  public static void addAttr2Element(Document document, Element elem, String attrName, String attrValue) 
   {
-    Element name = document.createElement(attrName);
-    name.appendChild(document.createTextNode(attrValue));
-    elem.appendChild(name);
+    elem.setAttribute(attrName, attrValue);
   }
 
   public static void saveXml(final String fileName, final Node node, String encoding) throws java.io.FileNotFoundException, TransformerException {
