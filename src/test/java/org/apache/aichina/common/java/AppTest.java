@@ -73,6 +73,13 @@ public class AppTest
     }
 
     @Test
+    public void getProgramArgsTest()
+    {
+      assertTrue(common_java.getProgramArgs("-r", "-r55").equals("55"));
+      assertTrue(common_java.getProgramArgs("-r", "-t5").equals(""));
+    }
+
+    @Test
     public void timeWork()
     {
       common_java_timer jt = new common_java_timer();

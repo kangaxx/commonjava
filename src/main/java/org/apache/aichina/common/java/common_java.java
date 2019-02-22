@@ -2,9 +2,11 @@ package org.apache.aichina.common.java;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Scanner;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.xml.bind.JAXBContext;
@@ -17,6 +19,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import java.net.*;
 import org.apache.aichina.common.java.*;
 
 public class common_java
@@ -93,11 +96,11 @@ public class common_java
     }
   }
 
-  public static void Printf(String words){
+  public static void printf(String words){
     System.out.println(words);
   }
 
-  public static String Scanf(){
+  public static String scanf(){
     try{
       Scanner sc = new Scanner(System.in);
       return sc.nextLine();
@@ -204,4 +207,35 @@ public class common_java
     return path + separator + fileName;
   }
   
+  //解析系统运行参数实际值
+  //例如 getProgramArgs（"^-r" , "-r55"),会返回55
+  public static String getProgramArgs(String pattern, String matcher){
+    Pattern p = Pattern.compile(pattern);
+    Matcher m = p.matcher(matcher);
+    String result = "";
+    if (m.find())
+      result = m.replaceAll("");
+    return result;
+  }
+
+  private static class WorkerBTT extends Thread {
+    ServerSocket server;
+    private WorkerBTT(ServerSocket s) {
+      server = s;
+    }
+    public void run() {
+      while (true) {
+        try {
+          Socket socket = server.accept();
+          try {
+          } finally {
+            socket.close();
+          }
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+      }
+    }
+  }
+
 }

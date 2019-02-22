@@ -36,4 +36,5 @@ public class common_global_variant{
   public static final String GLOB_STRING_VDC_MEMSHARE_DEFAULT_LINUX_DATAFILE="/var/lib/virtual-data-gene/_vdc_datafile_";
   public static final String GLOB_STRING_VDC_MEMSHARE_DEFAULT_LINUX_CONFIGFILE="/var/lib/virtual-data-gene/vdc.conf";
   public static final int GLOB_INT_MEMSHARE_INT_CREATEMEM_RETRY_MAX=30;
+  public static final int GLOB_INT_MEMSHARE_INT_VDC_RUN_PORT = 23245;
 }
