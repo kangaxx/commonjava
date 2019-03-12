@@ -96,6 +96,16 @@ public class common_java
     }
   }
 
+  public static byte[] int2byte(int input){
+    byte[] result = new byte[4];
+    result[0] = (byte)(input >> 24);
+    result[1] = (byte)((input >> 16) & 0xff);
+    result[2] = (byte)((input >> 8) & 0xff);
+    result[3] = (byte)(input & 0xff);
+    return result;
+  }
+
+
   public static void printf(String words){
     System.out.println(words);
   }
@@ -218,9 +228,9 @@ public class common_java
     return result;
   }
 
-  private static class WorkerBTT extends Thread {
-    ServerSocket server;
-    private WorkerBTT(ServerSocket s) {
+  public static class WorkerBTT extends Thread {
+    public ServerSocket server;
+    public  WorkerBTT(ServerSocket s) {
       server = s;
     }
     public void run() {

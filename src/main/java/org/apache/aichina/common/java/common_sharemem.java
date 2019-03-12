@@ -150,7 +150,7 @@ public class common_sharemem{
 
 
 
-  //hdfs端读取程序用的句柄池,替代之前的方案（之前的方案开关文件导致大量占用文件句柄）
+  //读取程序用的句柄池,替代之前的方案（之前的方案开关文件导致大量占用文件句柄）
   public static MappedByteBuffer [] getReadProcessBufferPool(String prefix, int count, int size){
     try{
       MappedByteBuffer[] result = new MappedByteBuffer[count];
