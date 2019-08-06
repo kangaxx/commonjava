@@ -53,13 +53,33 @@ public class common_java
       return execReturn;
     }
   }
-  
+
   public static int StrToInt(String input){
     return Integer.parseInt(input);    
   }
 
   public static String IntToStr(int input){
     return String.valueOf(input);
+  }
+
+  public static long StrToLong_safe(String in){
+    return StrToLong_safe(in, -1L);
+  }
+
+  public static long StrToLong_safe(String in, long execReturn){
+    try{
+      return Long.parseLong(in);
+    } catch(Exception e) {
+      return execReturn;
+    }
+  }
+
+  public static long StrToLong(String in){
+    return Long.parseLong(in);
+  }
+
+  public static String LongToStr(long in){
+    return String.valueOf(in);
   }
 
   public static char[] StrToChar(String input){

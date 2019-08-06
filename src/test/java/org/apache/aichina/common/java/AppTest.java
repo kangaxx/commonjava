@@ -63,6 +63,9 @@ public class AppTest
       assertTrue( common_java.IntToStr(normal_int).equals("123"));
       assertTrue( normal_str.equals(common_java.CharToStr(common_java.StrToChar(normal_str))));
       assertTrue( normal_str.equals(common_java.ByteToStr(common_java.StrToByte(normal_str))));
+      long normal_long = 123L;
+      assertTrue( common_java.LongToStr(normal_long).equals("123"));
+      assertTrue( normal_str.equals(common_java.LongToStr(common_java.StrToLong(normal_str))));
     }
 
     @Test
