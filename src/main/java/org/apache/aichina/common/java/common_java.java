@@ -18,6 +18,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import java.nio.ByteBuffer;
 
 import java.net.*;
 import org.apache.aichina.common.java.*;
@@ -124,6 +125,40 @@ public class common_java
     result[3] = (byte)(input & 0xff);
     return result;
   }
+
+  public static int byte2int(byte[] input) throws Exception{
+    if (input.length != 4)
+      throw new Exception("Error, function byte2int error , input length must be 4!");
+    int result = 0;
+    for (int i = 24, j = 0; i >= 0; i = i - 8, j++){
+      result = result|((input[j] & 0xff) << i);
+    }
+    return result;
+  }
+
+  public static byte[] long2byte(long input){
+    byte[] result = new byte[8];
+    for (int i = 0; i < result.length; i++){
+      result[i] = new Long(input & 0xff).byteValue();
+      input = input >> 8;
+    }    
+    return result;
+  }
+
+  public static long byte2long(byte[] input) throws Exception{
+    if (input.length != 8)
+      throw new Exception("Error, function byte2Long error , input length must be 8!");
+    long result = 0L;
+    long tmp = 0L;
+    for (int i = 0; i < input.length; i++){
+      tmp = input[i] & 0xff;
+      if (i > 0)
+        tmp <<= i*8;
+      result |= tmp;
+    }
+    return result;
+  }
+
 
 
   public static void printf(String words){

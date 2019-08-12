@@ -99,4 +99,33 @@ public class AppTest
       assertTrue(1000000 % 1000 == 0);
       assertTrue(0 % 1000 == 0);
     }
+
+    @Test
+    public void ByteAndInt()
+    {
+      try{
+        for (int i = 0; i < 10000; i++){
+          assertTrue(i == common_java.byte2int(common_java.int2byte(i)));
+        }
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    }
+
+    @Test
+    public void ByteAndLong()
+    {
+      try{
+        for (long i = 1, j = 0; i < Long.MAX_VALUE && i > 0 ; i = i * 100, j++  ){
+          //if (i != common_java.byte2long(common_java.long2byte(i)))
+          //  System.out.println(String.format("convert fail, orinal : [%d], converted : [%d]", i, common_java.byte2long(common_java.long2byte(i))));
+          assertTrue(i == common_java.byte2long(common_java.long2byte(i)));
+          assertTrue(j == common_java.byte2long(common_java.long2byte(j)));          
+        }
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    }
+
+
 }
