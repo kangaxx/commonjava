@@ -3,7 +3,6 @@ package org.apache.aichina.common.java;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
-
 /**
  * Unit test for simple App.
  */
@@ -127,5 +126,57 @@ public class AppTest
       }
     }
 
+    @Test
+    public void ByteAndLong_unsafe()
+    {
+      try{
+        for (long i = 1, j = 0; i < Long.MAX_VALUE && i > 0 ; i = i * 100, j++  ){
+          //if (i != common_java.byte2long(common_java.long2byte(i)))
+          //  System.out.println(String.format("convert fail, orinal : [%d], converted : [%d]", i, common_java.byte2long(common_java.long2byte(i))));
+          assertTrue(i == common_java.byte2long_unsafe(common_java.long2byte_unsafe(i)));
+          assertTrue(j == common_java.byte2long_unsafe(common_java.long2byte_unsafe(j)));          
+        }
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+
+    }
+
+    @Test
+    public void testGetPid()
+    {
+      try{
+        String pid = common_java.getPId();
+        System.out.println("pid is : " + pid);
+        System.out.println("for comfirm pid ,user command : ps aux|grep java, this sentence will last 20 sec");
+        Thread.sleep(1000 * 20);
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    }
+
+    @Test
+    public void testCalendar()
+    {
+      try{
+        java.util.Calendar cal = java.util.Calendar.getInstance();
+        System.out.println("today is : " + cal.getTime() + " and dateStr : " + common_java.getSysteDate(cal) + " and dateHourStr : " + common_java.getSystemDateHour(cal));
+        cal.set(java.util.Calendar.MONTH, 0);
+        cal.set(java.util.Calendar.DAY_OF_MONTH, 1);
+        System.out.println("date [" + cal.getTime() + "] Str : " + common_java.getSysteDate(cal) +  " and dateHourStr : " + common_java.getSystemDateHour(cal));
+        cal.set(java.util.Calendar.MONTH, 9);
+        cal.set(java.util.Calendar.DAY_OF_MONTH, 1);
+        cal.set(java.util.Calendar.HOUR, 5);
+        System.out.println("date [" + cal.getTime() + "] Str : " + common_java.getSysteDate(cal) +  " and dateHourStr : " + common_java.getSystemDateHour(cal));
+        cal.set(java.util.Calendar.MONTH, 5);
+        cal.set(java.util.Calendar.DAY_OF_MONTH, 31);
+        System.out.println("date [" + cal.getTime() + "] Str : " + common_java.getSysteDate(cal) +  " and dateHourStr : " + common_java.getSystemDateHour(cal));
+        System.out.println("system date str is : " + common_java.getSysteDate() + " and dateHourStr : " + common_java.getSystemDateHour() ); 
+      }catch(Exception e){
+        e.printStackTrace();
+
+      }
+
+    }
 
 }
