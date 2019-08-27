@@ -2,8 +2,11 @@ package org.apache.aichina.common.java;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Scanner;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -18,15 +21,15 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import java.nio.ByteBuffer;
 
+import java.lang.management.*;
 import java.net.*;
 import org.apache.aichina.common.java.*;
 
 public class common_java
 {
   public static String HDFS_PROCESS_PROPERTIES = "hdfs-start.properties";
-
+  private static ByteBuffer buffer = ByteBuffer.allocate(8);
   /////////////////////////////////////////////////////////////////////////////////////////////////////
   //通过xml文件读取配置，代码已经升级迁移到common_xml类内
   public static String getAttributeByElem(String fileName, String elemName, String attrName){  
@@ -147,7 +150,8 @@ public class common_java
 
   public static long byte2long(byte[] input) throws Exception{
     if (input.length != 8)
-      throw new Exception("Error, function byte2Long error , input length must be 8!");
+      throw new Exception("Error, function byte2long error , input length must be 8!");
+
     long result = 0L;
     long tmp = 0L;
     for (int i = 0; i < input.length; i++){
@@ -159,10 +163,45 @@ public class common_java
     return result;
   }
 
+  //该函数容易出现数组越界等问题，在spark模式下，一些java反射函数方法不能直接运行
+  public static long byte2long_unsafe(byte[] input){
+    try{
+      buffer.clear();
+      buffer.put(input, 0, 8);
+      buffer.flip();
+      long result = buffer.getLong();
+      return result;
+    } catch (Exception e) {
+      return 0L;
+    }
+  }
 
-
+  public static byte[] long2byte_unsafe(long input){
+    buffer.clear();
+    buffer.putLong(0, input);
+    return buffer.array();
+  }
   public static void printf(String words){
     System.out.println(words);
+  }
+
+  //获取日期值
+  public static String getSysteDate(Calendar cal){
+    return IntToStr(cal.get(Calendar.YEAR) * 10000 + (cal.get(Calendar.MONTH) + 1) * 100 + cal.get(Calendar.DAY_OF_MONTH));
+  }
+
+  public static String getSysteDate(){
+    java.util.Calendar cal = Calendar.getInstance();
+    return getSysteDate(cal);
+  }
+
+  public static String getSystemDateHour(Calendar cal){
+    return IntToStr(cal.get(Calendar.YEAR) * 1000000 + (cal.get(Calendar.MONTH) + 1) * 10000 + cal.get(Calendar.DAY_OF_MONTH) * 100 + cal.get(Calendar.HOUR));
+  }
+
+  public static String getSystemDateHour(){
+    java.util.Calendar cal = Calendar.getInstance();
+    return getSystemDateHour(cal);
   }
 
   public static String scanf(){
@@ -302,5 +341,21 @@ public class common_java
       }
     }
   }
+  
+  public static byte[] byteMerge(byte[] bt1, byte[] bt2){
+    byte[] result = new byte[bt1.length + bt2.length];  
+    System.arraycopy(bt1, 0, result, 0, bt1.length);  
+    System.arraycopy(bt2, 0, result, bt1.length, bt2.length);  
+    return result;
+  }
 
+  //获取当前进程id号
+  public static String getPId(){
+    //get name representing the running Java virtual machine.  
+    String name = ManagementFactory.getRuntimeMXBean().getName();  
+    System.out.println(name);  
+    // // get pid  
+    String pid = name.split("@")[0];  
+    return pid;
+  }
 }
