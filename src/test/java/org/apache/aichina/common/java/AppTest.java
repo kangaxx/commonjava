@@ -2,6 +2,7 @@ package org.apache.aichina.common.java;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.List;
 import org.junit.Test;
 /**
  * Unit test for simple App.
@@ -178,5 +179,18 @@ public class AppTest
       }
 
     }
-
+    
+    @Test
+    public void testFileList()
+    {
+      try{
+        for (String name : common_java.getFiles("/var/log", ".log"))
+        {
+          System.out.println("get log file in /var/log : " + name);
+        }
+      } catch (Exception e){
+        e.printStackTrace();
+      }
+    }
+    
 }

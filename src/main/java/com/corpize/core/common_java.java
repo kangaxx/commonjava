@@ -212,6 +212,28 @@ public class common_java
     return formatter.format(date);
   }
 
+  //列出路径内所有文件
+  public static List<String> getFiles(String directory){
+    List<String> result = new ArrayList<String>();
+    File f = new File(directory); 
+    for (File tmp : f.listFiles()){
+      if (tmp.isFile())
+        result.add(tmp.getAbsolutePath());
+    }
+    return result;
+  }
+
+  //列出路径内所有特定类型的文件
+  public static List<String> getFiles(String directory, String ends){
+    List<String> result = new ArrayList<String>();
+    File f = new File(directory);
+    for (File tmp: f.listFiles()){
+      if (tmp.isFile() && tmp.getName().endsWith(ends))
+        result.add(tmp.getAbsolutePath());
+    }
+    return result;
+  }
+
   public static String scanf(){
     try{
       Scanner sc = new Scanner(System.in);
@@ -378,4 +400,5 @@ public class common_java
     else 
       return str;
   }
+
 }
